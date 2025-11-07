@@ -146,29 +146,41 @@ body {
     border: none;
     cursor: pointer;
     font-size: 1rem;
+    outline: none;
 }
 
 .btn-primary {
     background: var(--green-accent);
     color: var(--bg-dark);
-    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+    box-shadow: none;
+    outline: none;
 }
 
 .btn-primary:hover {
     background: var(--green-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4);
+    box-shadow: none;
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--green-accent);
     border: 2px solid var(--green-accent);
+    outline: none;
 }
 
 .btn-secondary:hover {
     background: rgba(0, 230, 118, 0.1);
     border-color: var(--green-dark);
+}
+
+.btn-secondary:focus {
+    outline: none;
 }
 
 /* Future Section */
@@ -383,7 +395,7 @@ section {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--green-accent);
+    border-color: var(--border-dark);
 }
 
 .btn-full {
