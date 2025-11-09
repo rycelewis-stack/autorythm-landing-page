@@ -13,6 +13,9 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Env files
+.env
+
 # Dependencies (if added later)
 node_modules/
 package-lock.json
