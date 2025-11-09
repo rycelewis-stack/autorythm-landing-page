@@ -41,16 +41,16 @@ Simply open `index.html` in your web browser to view the landing page.
 - Add your logo image if needed
 - Connect the contact form to your backend/email service
 
-## Backend API
+## Backend API (Vercel)
 
-The contact form now posts to a lightweight Node.js backend that stores submissions in `data/submissions.json` and emails you the details.
+The contact form now targets a serverless function at `/api/contact`, so the entire project can live in a single Vercel deployment.
 
-1. Duplicate `.env.example` to `.env` and fill in your SMTP credentials plus the email address that should receive notifications.
-2. Install dependencies (already included in `package-lock.json`) with `npm install`.
-3. Start the API locally with `npm run dev` (auto-restarts) or `npm start`.
-4. Keep `server.js` running while you test the form. By default, the form sends data to `http://localhost:4000/api/contact`. Update the `data-endpoint` attribute on the form if your backend lives elsewhere (e.g., deployed on Render or Railway).
+1. Duplicate `.env.example` to `.env` locally (or add the same values in the Vercel dashboard). You only need SMTP-related variables now.
+2. Install dependencies with `npm install`.
+3. For local testing, install the [Vercel CLI](https://vercel.com/docs/cli) and run `vercel dev` to spin up both the static site and the `/api/contact` function.
+4. Deploy with `vercel --prod` (or connect the repo in the dashboard). The live form will POST to `https://your-domain.vercel.app/api/contact`.
 
-Every submission is appended to `data/submissions.json`, so you retain a history even if email delivery ever fails.
+Submissions are emailed via the SMTP settings you provide. If you need persistent storage, plug the function into an external database or service.
 
 ## Browser Support
 

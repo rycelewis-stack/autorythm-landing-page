@@ -2,10 +2,8 @@
   "name": "ryce-autorythm",
   "version": "1.0.0",
   "description": "A modern, responsive landing page for Autorythm - an AI-powered automation services company.",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,12 +18,6 @@
   },
   "homepage": "https://github.com/rycelewis-stack/autorythm-landing-page#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
     "nodemailer": "^7.0.10"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
   }
 }
