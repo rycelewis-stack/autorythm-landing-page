@@ -310,6 +310,89 @@ section {
     font-weight: bold;
 }
 
+/* Portfolio Section */
+.portfolio {
+    background: var(--bg-darker);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.portfolio-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-dark);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    box-shadow: var(--shadow-dark);
+}
+
+.portfolio-card:hover {
+    border-color: var(--green-accent);
+    transform: translateY(-6px);
+}
+
+.portfolio-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(0, 230, 118, 0.12);
+    color: var(--green-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.portfolio-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.portfolio-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.portfolio-details {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.portfolio-cta {
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--border-dark);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.portfolio-cta h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+}
+
+.portfolio-cta p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
 /* About Section */
 .about {
     background: var(--bg-dark);
@@ -506,6 +589,15 @@ section {
     .services-grid {
         grid-template-columns: 1fr;
     }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .portfolio-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 @media (max-width: 768px) {
@@ -546,6 +638,10 @@ section {
 
     .section-title {
         font-size: 2rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
     }
 }
 
