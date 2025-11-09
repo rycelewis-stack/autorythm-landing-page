@@ -485,6 +485,25 @@ section {
     width: 100%;
 }
 
+.form-status {
+    margin-top: 1rem;
+    min-height: 1.25rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-status.sending {
+    color: var(--text-secondary);
+}
+
+.form-status.success {
+    color: var(--green-accent);
+}
+
+.form-status.error {
+    color: #ff6b6b;
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;

@@ -47,26 +47,66 @@ window.addEventListener('scroll', () => {
 
 // Form Submission
 const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        company: document.getElementById('company').value,
-        message: document.getElementById('message').value
+if (contactForm) {
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const configuredEndpoint = contactForm.dataset.endpoint || '/api/contact';
+    const apiEndpoint = configuredEndpoint.startsWith('http')
+        ? configuredEndpoint
+        : `${window.location.origin && window.location.origin.startsWith('http')
+            ? window.location.origin
+            : 'http://localhost:4000'}${configuredEndpoint}`;
+
+    const setStatus = (state, message) => {
+        if (!formStatus) return;
+        formStatus.textContent = message;
+        formStatus.className = `form-status ${state}`;
     };
-    
-    // Here you would typically send the form data to a server
-    // For now, we'll just show an alert
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-});
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            company: document.getElementById('company').value.trim(),
+            message: document.getElementById('message').value.trim()
+        };
+
+        if (!formData.name || !formData.email || !formData.message) {
+            setStatus('error', 'Please fill out the required fields.');
+            return;
+        }
+
+        setStatus('sending', 'Sending your message...');
+        submitButton.disabled = true;
+
+        try {
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Something went wrong.');
+            }
+
+            setStatus('success', 'Thanks! Your message is on its way.');
+            contactForm.reset();
+        } catch (error) {
+            console.error('Form submission failed:', error);
+            setStatus('error', error.message || 'Unable to send message right now.');
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

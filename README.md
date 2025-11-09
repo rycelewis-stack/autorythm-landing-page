@@ -41,6 +41,17 @@ Simply open `index.html` in your web browser to view the landing page.
 - Add your logo image if needed
 - Connect the contact form to your backend/email service
 
+## Backend API
+
+The contact form now posts to a lightweight Node.js backend that stores submissions in `data/submissions.json` and emails you the details.
+
+1. Duplicate `.env.example` to `.env` and fill in your SMTP credentials plus the email address that should receive notifications.
+2. Install dependencies (already included in `package-lock.json`) with `npm install`.
+3. Start the API locally with `npm run dev` (auto-restarts) or `npm start`.
+4. Keep `server.js` running while you test the form. By default, the form sends data to `http://localhost:4000/api/contact`. Update the `data-endpoint` attribute on the form if your backend lives elsewhere (e.g., deployed on Render or Railway).
+
+Every submission is appended to `data/submissions.json`, so you retain a history even if email delivery ever fails.
+
 ## Browser Support
 
 - Chrome (latest)
@@ -51,3 +62,6 @@ Simply open `index.html` in your web browser to view the landing page.
 ## License
 
 © 2024 Autorythm. All rights reserved.
+
+
+
